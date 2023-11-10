@@ -1,28 +1,47 @@
+import { useState } from "react"
 
 type OnOffType = {
-    value: boolean
+    // value: boolean
 }
+
 
 export const OnOff = (props: OnOffType) => {
 
-    if (props.value === true) {
-        return (
-            <div style={{ textAlign: 'center' }}>
+    const [on, setOn] = useState(true)
 
-                <span style={{ width: "60px", height: '30px', backgroundColor: 'green', textAlign: 'center', border: '1px solid black' }}>On</span>
-                <span style={{ width: "60px", height: '30px', backgroundColor: 'red', textAlign: 'center', border: '1px solid black' }}>Off</span>
-                <span style={{ width: '50px', height: '50px', backgroundColor: 'green', borderRadius: '50%' }}>0</span>
-            </div>
-        )
-    } else {
-        return (
-            <div style={{ textAlign: 'center' }}>
-                <span style={{ width: "60px", height: '30px', backgroundColor: 'green', textAlign: 'center', border: '1px solid black' }}>On</span>
-                <span style={{ width: "60px", height: '30px', backgroundColor: 'red', textAlign: 'center', border: '1px solid black' }}>Off</span>
-                <span style={{ width: '50px', height: '50px', backgroundColor: 'red', borderRadius: '50%' }}>0</span>
-            </div>
-        )
+    const onStyle = {
+        width: '30px',
+        height: '20px',
+        border: '1px solid black',
+        display: 'inline-block',
+        padding: '2px',
+        backgroundColor: on ? 'green' : 'white',
+    }
+    const offStyle = {
+        width: '30px',
+        height: '20px',
+        border: '1px solid black',
+        display: 'inline-block',
+        marginLeft: '5px',
+        padding: '2px',
+        backgroundColor: on ? 'white' : 'red',
+    }
+    const indicatorStyle = {
+        width: '20px',
+        height: '20px',
+        borderRadius: '15px',
+        border: '1px solid black',
+        display: 'inline-block',
+        marginLeft: '5px',
+        padding: '2px',
+        backgroundColor: on ? 'green' : 'red'
     }
 
-
+    return (
+        <div>
+            <div style={onStyle} onClick={() => setOn(true)}>On</div>
+            <div style={offStyle} onClick={() => setOn(false)}>Off</div>
+            <div style={indicatorStyle}></div>
+        </div>
+    )
 }
