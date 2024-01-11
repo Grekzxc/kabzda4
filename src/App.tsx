@@ -17,7 +17,7 @@ function App() {
   return (
     <div className={'App'}>
 
-      <OnOff on={switchOn} setOn={setswitchOn} />
+      {/* <OnOff on={switchOn} setOn={setswitchOn} /> */}
 
       <UncontrolledOnOff onChange={setswitchOn} /> {switchOn.toString()}
 
