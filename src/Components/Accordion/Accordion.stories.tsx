@@ -8,9 +8,8 @@ export default {
 };
 
 
-
-
 const onChangeCallBack = action('onClick')
+
 export const CollapsedAccordion = () => {
     return (
         <Accordion
