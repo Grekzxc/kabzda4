@@ -4,8 +4,8 @@ import { Accordion } from './Components/Accordion/Accordion';
 import { Rating, RatingType, RatingValueType } from './Components/Rating/Rating';
 import { UncontrolledAccordion } from './Components/UncontrolledAccordion/UncontrolledAccordion';
 import { UncontrolledRating } from './Components/UncontrolledRating/UncontrolledRating';
-import { OnOff } from './OnOff/OnOff';
-import { UncontrolledOnOff } from './UncontrolledOnOff/UncontrolledOnOff';
+import { OnOff } from './Components/OnOff/OnOff';
+import { UncontrolledOnOff } from './Components/UncontrolledOnOff/UncontrolledOnOff';
 
 function App() {
 
