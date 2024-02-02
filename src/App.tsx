@@ -24,7 +24,7 @@ function App() {
       <UncontrolledAccordion titleValue={'bla'} />
       <UncontrolledRating />
       <Rating value={ratingValue} onClick={setRatingValue} />
-      <Accordion value={acc} onClick={() => { setAcc(!acc) }} titleValue='bla bla' />
+      {/* <Accordion value={acc} onClick={() => { setAcc(!acc) }} titleValue='bla bla' /> */}
     </div>
   );
 }
