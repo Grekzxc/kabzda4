@@ -1,9 +1,8 @@
-import React from "react"
+import React, { useCallback } from "react"
 import { useMemo, useState } from "react"
 
-
 export default {
-    title: 'useMemo'
+    title: 'useCallBack'
 }
 
 export const DifficultCouting = () => {
@@ -39,36 +38,41 @@ export const DifficultCouting = () => {
     </>
 }
 
-const UsersStay = (props: { users: Array<string> }) => {
-    console.log('UsersStay');
-
-    return <div>
-        {props.users.map((u, i) => <div key={i}>{u}</div>)}
-    </div>
-}
-
-const Users = React.memo(UsersStay)
-
-export const HelpToReactMemo = () => {
-    console.log('HelpToReactMemo');
-
+export const HelpToCallBack = () => {
+    console.log('HelpToCallBack');
     const [count, setCount] = useState(0)
-    const [users, setUsers] = useState(['Alex', 'Grek', 'Malush'])
+    const [books, setBooks] = useState(['React', 'JS', 'HTML', 'CSS'])
 
-    const newArray = useMemo(() => {
-        return users.filter(u => u.toLowerCase().indexOf('a') > -1)
-    }, [users])
+    //useMemo ----> разница с useCallBack 
+    const memoizedAddBook = useMemo(() => {
+        return () => {
+            const newBooks = [...books, 'Andular' + new Date().getTime()]
+            setBooks(newBooks)
+        }
+    }, [books])
 
-    const addUser = () => {
-        const newUsers = [...users, 'Sveta' + new Date().getTime()]
-        setUsers(newUsers)
-    }
+    //useCallBack
+    const memoizedAddBook2 = useCallback(() => {
+        setBooks([...books, 'Andular' + new Date().getTime()])
+    }, [books])
+
+
 
     return <>
         <button onClick={() => { setCount(count + 1) }}>+</button>
-        <button onClick={() => addUser()}>addUser</button>
         {count}
-        <Users users={newArray} />
+        <CoolBook addBooks={memoizedAddBook2} />
     </>
 }
 
+type BooksType = {
+    addBooks: () => void
+}
+
+const Books = (props: BooksType) => {
+    console.log('Books');
+    return <div>
+        <button onClick={() => props.addBooks()}>addBooks</button>
+    </div>
+}
+const CoolBook = React.memo(Books)
