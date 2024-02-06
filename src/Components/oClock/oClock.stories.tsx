@@ -1,10 +1,12 @@
 import React, { useEffect } from "react"
 import { useState } from "react"
+import { Clock3 } from "./Clock";
 
 
 
 export default {
-    title: 'O`clock demo'
+    title: 'O`clock demo',
+    component: Clock3
 }
 
 export const Clock = () => {
@@ -38,28 +40,13 @@ export const Clock = () => {
 };
 
 
-export const Clock2 = () => {
-    const [date, setDate] = useState(new Date())
-
-    useEffect(() => {
-        const intervalId = setInterval(() => {
-            setDate(new Date())
-        }, 1000)
-
-        return () => {
-            clearInterval(intervalId)
-        }
-    }, [])
-
-    const goodAllTime = (value: number) => {
-        return value < 10 ? '0' + value : value
-    }
-
-    return <div>
-        <span>{goodAllTime(date.getHours())}</span>
-        :
-        <span>{goodAllTime(date.getMinutes())}</span>
-        :
-        <span>{goodAllTime(date.getSeconds())}</span>
-    </div>
+export const analogClock = () => {
+    return <Clock3 mode="analog" />
 }
+
+export const digitalClock = () => {
+    return <Clock3 mode="digital" />
+}
+
+
+
