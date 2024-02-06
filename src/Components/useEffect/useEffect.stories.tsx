@@ -1,8 +1,6 @@
 import React, { useEffect } from "react"
 import { useState } from "react"
 
-
-
 export default {
     title: 'useEffect demo'
 }
@@ -44,11 +42,69 @@ export const SetTimeoutExample = () => {
             setCount(state => state + 1)
         }, 1000);
     }, [])
-
     return <>
         {count} :: {fake}
-        {/* <button onClick={() => { setCount(count + 1) }}>Count</button>
-        <button onClick={() => { setFake(fake + 1) }}>Fake</button> */}
+    </>
+}
+export const ResetRffectExample = () => {
+    console.log('SetTimeoutExample');
+
+    const [count, setCount] = useState(1)
+
+    useEffect(() => {
+        console.log('Effect occurred : ' + count);
+
+        return () => {
+            console.log('RESET EFFEKT');
+
+        }
+    }, [count])
+    return <>
+        <button onClick={() => setCount(count + 1)}>x</button>
+        {count}
+    </>
+}
+export const KeysTrackerExample = () => {
+    console.log('SetTimeoutExample');
+
+    const [text, setText] = useState('')
+
+    useEffect(() => {
+
+        const handler = (e: KeyboardEvent) => {
+            console.log(e.key);
+            setText(state => state + e.key)
+        }
+
+        window.addEventListener('keypress', handler)
+        // зачистка подписки addEventListener
+        return () => {
+            window.removeEventListener('keypress', handler)
+        }
+    }, [])
+
+    return <>
+
+        typed text: {text}
+    </>
+}
+export const CleanupExample = () => {
+    const [text, setText] = useState('')
+    console.log('Component rendered');
+
+
+    useEffect(() => {
+        const intervalId = setTimeout(() => {
+            console.log('TIMEOUT EXPIRED');
+            setText('3 seconds passed')
+        }, 3000)
+        return () => {
+            clearTimeout(intervalId)
+        }
+    }, [text])
+
+    return <>
+        Typed text: {text}
     </>
 }
 
